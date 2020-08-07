@@ -24,8 +24,16 @@ Play with kubernetes jobs
 
 ## Enforcing a time limit
 
-Create cron job: `kubectl create -f ./jobs/enforcing-a-time-limit.yaml`
+Create job: `kubectl create -f ./jobs/enforcing-a-time-limit.yaml`
 
 Check that the deadline was enforced: `kubectl get job enforcing-a-time-limit -o yaml` or `kubectl describe job enforcing-a-time-limit` (check for "DeadlineExceeded")
 
 Delete job: `kubectl delete job enforcing-a-time-limit` or `kubectl delete -f ./jobs/enforcing-a-time-limit.yaml`
+
+## Handling failures
+
+Create job: `kubectl apply -f jobs/handling-failures.yaml`
+
+Watch job's pod status and restarts: `kubectl get pod $(kubectl get pods | grep handling-failures | tail -n 1 | awk '{print $1}') --watch`
+
+Delete job: `kubectl delete job handling-failures` or `kubectl delete -f ./jobs/handling-failures.yaml`
