@@ -39,3 +39,11 @@ Watch job's pod status and restarts: `kubectl get pod $(kubectl get pods | grep 
 Check the backoff limit was enforced: `kubectl get job handling-failures -o yaml` or `kubectl describe job handling-failures` (check for "BackoffLimitExceeded")
 
 Delete job: `kubectl delete job handling-failures` or `kubectl delete -f ./jobs/handling-failures.yaml`
+
+## Running in parallel
+
+Create job: `kubectl apply -f jobs/running-in-parallel.yaml`
+
+Watch job's overlapping completions: `kubectl get job running-in-parallel -w`
+
+Delete job: `kubectl delete job running-in-parallel` or `kubectl delete -f ./jobs/running-in-parallel.yaml`
